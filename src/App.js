@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'
 import './App.css';
+import Spinner from "./Spinner.gif"
 
 function App() {
   const [submitting, setSubmitting] = useState(false);
@@ -14,6 +15,8 @@ function App() {
  }
 
   return(
+    <>
+    {submitting === false ? (
     <div className="wrapper">
       <h1>Enter a URL</h1>
       {submitting &&
@@ -28,7 +31,8 @@ function App() {
         </fieldset>
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </div>) : (<img src={Spinner} alt="loading..." />)}
+    </>
   )
 }
 
