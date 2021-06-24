@@ -13,6 +13,14 @@ function App() {
      setSubmitting(false);
    }, 3000)
  }
+ 
+ const [data, setData] = React.useState(null);
+
+ React.useEffect(() => {
+   fetch("/api")
+     .then((res) => res.json())
+     .then((data) => setData(data.message));
+ }, []);
 
   return(
     <>
@@ -29,6 +37,7 @@ function App() {
             <input name="name" />
           </label>
         </fieldset>
+        <p>{!data ? "Loading..." : data}</p>
         <button type="submit">Submit</button>
       </form>
     </div>) : (<img src={Spinner} alt="loading..." />)}
